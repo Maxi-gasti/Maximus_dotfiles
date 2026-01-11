@@ -5,6 +5,8 @@
 <h2>|--- Read Pls!</h2>
 
 First of all, I will try to be brief for you to customize or copy this dotfiles. be careful with *.share* this folder exist because when i tried arch linux for the first time i never saw the directories structure, and i created thinking is the right place for the wallpapers, conclusion: NO, just move the wallpapers and change the corresponding paths in the config files.
+<br>
+<br>
 Another notes: Some scripts are made in python (eww notify) but i dont know if is stable.
 
 And thats all, have fun customizing homie :)
