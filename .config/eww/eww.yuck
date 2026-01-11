@@ -1,0 +1,301 @@
+(deflisten music :initial "{}" "./scripts/music.sh")
+(deflisten pmusic :initial "{}" "./scripts/pmusic.sh")
+(deflisten notifs :initial "" "python ~/.config/eww/main.py")
+
+;; --- --- --- VENTANAS --- --- ---
+
+(defvar Userctl false)
+(defvar CheatsheetVar false)
+(defvar none false)
+
+(defwindow notifications
+           :monitor 0
+           :geometry (geometry :x "20px"
+                               :y "20px"
+                               :anchor "top right")
+           :stacking "overlay"
+           (literal :content notifs))
+
+
+(defwindow services
+           :monitor 0
+           :focusable "ondemand"
+           :geometry (geometry :x "-243px"
+                               :y "10px"
+                               :width "15%"
+                               :height "30%"
+                               :anchor "top right")
+           :stacking "fg"
+           :wm-ignore "false"
+           :focusable "false"
+           :space-evenly false
+           (box :orientation "horizontal"
+           (revealer :reveal {Userctl} 
+                    :transition "slideleft"
+                    :duration "350ms"
+                    (Userctl))
+           (revealer :reveal {none}
+                    :duration "350ms" :space-evenly false
+                    (label :text "hola"))))
+
+(defwindow CheatsheetW
+            :monitor 0
+            :focusable "ondemand"
+            :geometry (geometry :x "-388px"
+                               :y "10px"
+                               :width "15%"
+                               :height "20%"
+                               :anchor "bottom right")
+            :stacking "fg"
+            :wm-ignore "false"
+            :focusable "false"
+            :space-evenly false
+            (box :orientation "horizontal"
+                    (Cheatsheet)
+                    (revealer :reveal {none}
+                              :duration "350ms" :space-evenly false
+                              (label :text "hola")))
+
+)
+
+;; --- --- --- SERVICIOS WIDGETS --- --- ---
+
+
+(defwidget Userctl []
+           (box :orientation "vertical"
+                :class "Userctl"
+                :space-evenly false
+                (box  :orientation "horizontal"
+                      :space-evenly false
+                      (box :class "app-icon")
+                      (UserTitle :text "Maximus")
+
+                      (close-button))
+
+                (box :orientation "horizontal"
+                      :class "events-box"
+                      :space-evenly true
+                      (box :class "cpu-box"
+                            :orientation "vertical"
+                            (eventbox :class "cpu-hover"
+
+                                  (circular-progress :class "cpu"
+                                        :value {round(EWW_CPU.avg,10)}
+                                        :thickness 5
+                                        (box :class "cpu-ico"
+                                              (label :text ""))))
+                            
+                            (box :class "cpu-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "CPU:")
+                                  (label :text "${round(EWW_CPU.avg,0)}%")))
+
+                      (box :class "disk-box"
+                            :orientation "vertical"
+                            (eventbox
+                                  (circular-progress :class "disk"
+                                        :value {round(EWW_DISK["/"].used_perc,10)}
+                                        :thickness 5
+                                        (box :class "disk-ico"
+                                              (label :text ""))))
+                            (box :class "disk-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "ROM:")
+                                  (label :text "${round(EWW_DISK["/"].used_perc,0)}%")))
+
+                      (box :class "ram-box"
+                            :orientation "vertical"
+                            (eventbox
+                                  (circular-progress :class "ram"
+                                        :value {round(EWW_RAM.used_mem_perc,10)}
+                                        :thickness 5
+                                        (box :class "ram-ico"
+                                              (label :text ""))))
+                            (box :class "cpu-text" 
+                                  :space-evenly false
+                                  :halign "center"
+                                  (label :text "RAM:")
+                                  (label :text "${round(EWW_RAM.used_mem_perc,0)}%"))))
+
+                (box :orientation "horizontal" :class "music-panel"
+                      :space-evenly false
+                      (box :class "album-ico"
+                            :style "background-image: url('${music.thumbnail}');")
+                      (box :class "music-box"
+                            :orientation "vertical"
+                            :space-evenly false
+                            (label :text "${music.title}" :halign "start" :limit-width 17 :class "music-title")
+                            (box :orientation "horizontal"
+                                  (label :text "${music.artist}" :halign "start" :limit-width 12 :class "music-artist")
+                                  (label :text "${pmusic.positionStr}/${music.lengthStr}" :class "music-time")
+                            )
+                            (scale :class "music-slider"
+                                  :min 0
+                                  :max {music.length}
+                                  :value {pmusic.position})
+                            (box :orientation "horizontal" :class "music-controls" :space-evenly false
+                                (back-button)
+                                (play-button)
+                                (next-button))))
+                (box :orientation "vertical"
+                      :space-evenly false
+                      (ServiceTitle :text "Services")
+                      (box :orientation "vertical"
+                            :spacing 8
+                            (box :orientation "horizontal"
+                                    (dhcpcd-button)
+                                    (blueman-button))
+                            (box :orientation "horizontal"
+                                    (xampp-ON-button)
+                                    (xampp-OFF-button))))
+                (box :orientation "vertical"
+                      :space-evenly false
+                      (BgTitle :text "Backgrounds")
+                      (box :orientation "vertical"
+                            :spacing 10
+                            (box :orientation "horizontal" :spacing 6
+                                  (bg-1)
+                                  (bg-2)
+                                  (bg-3)
+                                  (bg-4))
+                            (box :orientation "horizontal" :spacing 6
+                                  (bg-5)
+                                  (bg-6)
+                                  (bg-7)
+                                  (bg-8))))
+                  (button :class "Cheat-btn"
+                    :onclick "${CheatsheetVar==true?"/home/Maximus/eww/target/release/eww update CheatsheetVar=false":"/home/Maximus/eww/target/release/eww update CheatsheetVar=true"}"
+                    (label :text "Cheatsheet"))))
+
+
+(defwidget Cheatsheet []
+      (box :orientation "vertical" :space-evenly false :class "Cheat-box"
+            (revealer :reveal {CheatsheetVar}
+                      :transition "slideleft"
+                      :duration "350ms"
+                      :class "reveal-Cheat"
+                      (box :orientation "vertical" :space-evenly false
+                            (label :text "Cheat Sheet" :halign "start")
+                            (label :text "NP = Numpad Numbers (1,2,3..)" :halign "start")
+                            (label :text "-----------------------------" :halign "start")
+                            (label :text "Win + Q 󱪼󰇘󰁕  Terminal" :halign "start")
+                            (label :text "Win + E 󱪼󰇘󰁕  File manager" :halign "start")
+                            (label :text "Win + R 󱪼󰇘󰁕  App Launcher" :halign "start")
+                            (label :text "Win + V 󱪼󰇘󰁕  Display window" :halign "start")
+                            (label :text "Win + T 󱪼󰇘󰁕  User Panel(Open only)" :halign "start")
+                            (label :text "Win + NP 󱪼󰇘󰁕  Change Workspace" :halign "start")
+                            (label :text "Win + S 󱪼󰇘󰁕  Screenshot" :halign "start")
+                            (label :text "Win  + Shift + S 󱪼󰇘󰁕  Screenshot & Edit" :halign "start")
+                            (label :text "Win  + Shift + NP 󱪼󰇘󰁕  Move window to Workspace" :halign "start")
+                            (label :text "Win + Ctrl + S 󱪼󰇘󰁕  Screenshot the Window" :halign "start")
+                            (label :text "Win +  NP 󱪼󰇘󰁕  Change window size" :halign "start")
+                            (label :text "Win + Ctrl + NP 󱪼󰇘󰁕 Change Background" :halign "start")
+                            ))))
+
+(defwidget space [text]
+  (label :text :text
+         :class "space"))
+
+(defwidget ServiceTitle [text]
+  (label :text text
+         :class "service-title"))
+
+(defwidget BgTitle [text]
+  (label :text text
+         :class "bg-title"))
+
+(defwidget UserTitle [text]
+  (label :text text
+         :class "user-title"))
+
+(defwidget close-button []
+    (button
+        :onclick "/home/Maximus/eww/target/release/eww update Userctl=false && eww update CheatsheetVar=false"
+        :class "close-btn"
+        "×"))
+
+(defwidget back-button []
+  (button :onclick "playerctl previous" :class "back-btn" "󰒮")
+)
+
+(defwidget next-button []
+  (button :onclick "playerctl next" :class "next-btn" "󰒭")
+)
+
+(defwidget play-button []
+  (button :onclick "playerctl play-pause" :class "play-btn" {music.status == "Playing" ? "󰓛" : "󰐊"})
+)
+
+(defwidget dhcpcd-button []
+    (button
+        :class "dhcpcd-btn"
+        :onclick "/home/Maximus/.local/bin/NM.sh"
+        "Wifi"))
+
+(defwidget blueman-button []
+    (button
+        :class "dhcpcd-btn"
+        :onclick "/home/Maximus/.local/bin/blueman.sh"
+        "Bluetooth"))
+
+(defwidget xampp-ON-button []
+    (button
+        :class "xampp-on-btn"
+        :onclick "/home/Maximus/.local/bin/xampp-ON.sh"
+        "Xampp ON"))
+
+(defwidget xampp-OFF-button []
+    (button
+        :class "xampp-off-btn"
+        :onclick "/home/Maximus/.local/bin/xampp-OFF.sh"
+        "Xampp OFF"))
+
+(defwidget bg-1 []
+    (button
+        :class "background-btn bg-1"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/75.jpg -m fill &"
+        ""))
+
+(defwidget bg-2 []
+    (button
+        :class "background-btn bg-2"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/20.jpg -m fill &"
+        ""))
+
+(defwidget bg-3 []
+    (button
+        :class "background-btn bg-3"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/85.jpg -m fill &"
+        ""))
+
+(defwidget bg-4 []
+    (button
+        :class "background-btn bg-4"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/43.png -m fill &"
+        ""))
+
+(defwidget bg-5 []
+    (button
+        :class "background-btn bg-5"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/87.jpg -m fill &"
+        ""))
+
+(defwidget bg-6 []
+    (button
+        :class "background-btn bg-6"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/83.png -m fill &"
+        ""))
+
+(defwidget bg-7 []
+    (button
+        :class "background-btn bg-7"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/89.png -m fill &"
+        ""))
+
+(defwidget bg-8 []
+    (button
+        :class "background-btn bg-8"
+        :onclick "pkill swaybg && swaybg -i ~/.share/Wallpapers/59.png -m fill &"
+        ""))

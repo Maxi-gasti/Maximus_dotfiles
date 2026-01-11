@@ -1,0 +1,33 @@
+[colors.cursor]
+cursor = "#f5e0dc"
+text = "#1e1e2e"
+
+[colors.primary]
+background = "#11111b"
+foreground = "#cdd6f4"
+
+[colors]
+# Colores normales
+bright = { black = '#363a4f', red = '#f38ba8', green = '#a6e3a1', yellow = '#f9e2af', blue = '#89b4fa', magenta = '#d5a2f7', cyan = '#89dceb', white = '#cdd6f4' }
+
+# Colores brillantes
+normal = { black = '#11111b', red = '#f22f69', green = '#70c05b', yellow = '#ffde5d', blue = '#5ea6f5', magenta = '#ba96df', cyan = '#24cff5', white = '#eff5ff'}
+
+[cursor]
+style = "Underline"
+unfocused_hollow = false
+
+[window]
+decorations = "None"
+opacity = 0.9
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular"}
+bold = { family = "Hack Nerd Font", style = "Bold"}
+italic = { family = "Hack Nerd Font", style = "Italic"}
+bold_italic = { family = "Hack Nerd Font", style = "Bold Italic" }
+size = 9.0
+
+[window.padding]
+x = 5
+y = 5

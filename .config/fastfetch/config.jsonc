@@ -1,0 +1,146 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json", // Optional: Provides IDE intelligence
+    "logo": {
+        "type": "auto",     // Logo type: auto, builtin, small, file, etc.
+        "source": "arch",      // Built-in logo name or file path
+        "width": 20,           // Width in characters (for image logos)
+        "height": 18,          // Height in characters (for image logos)
+        "padding": {
+            "top": 0,          // Top padding
+            "left": 0,         // Left padding
+            "right": 2         // Right padding
+        },
+        "color": {             // Override logo colors
+            "1": "#eff1f5",
+            "2": "#ccd0da"
+        }
+    },
+    "display": {
+        "separator": ": ",     // Separator between keys and values
+        "color": {
+            "keys": "#f4f4f4",    // Key color
+            "title": "#f4f4f4"     // Title color
+        },
+        "key": {
+            "width": 12,       // Aligns keys to this width
+            "type": "string"   // string, icon, both, or none
+        },
+        "bar": {
+            "width": 12,       // Width of percentage bars
+            "elapsed": "■", // Character for elapsed portion
+            "total": "-"   // Character for total portion
+
+        },
+        "percent": {
+            "type": 9,      // 1=number, 2=bar, 3=both, 9=colored number
+            "color": {
+                "green": "green",
+                "yellow": "light_yellow",
+                "red": "light_red"
+            }
+        }
+    },
+    "modules": [
+        {
+          "type": "custom",
+          "format": "⌜        ☻       ⌝"
+        },
+        {
+            "type": "title",
+            "format": "  {user-name-colored}{at-symbol-colored}{host-name-colored}"
+        },
+        {
+          "type": "custom",
+          "format": "⌞                ⌟"
+        },
+        {
+          "type": "custom",
+          "format": ""
+        },
+        {
+            "type": "os",
+            "key": " OS",
+            "keyColor": "#89b4fa",
+            "format": "{name} {version}"
+        },
+        {
+            "type": "kernel",
+            "keyColor": "#89b4fa",
+            "key": "  "
+        },
+        {
+            "type": "packages",
+            "keyColor": "#89b4fa",
+            "key": " 󰏖 "
+        },
+        {
+            "type": "terminal",
+            "keyColor": "#89b4fa",
+            "key": "  "
+        },
+        {
+            "type": "wm",
+            "keyColor": "#89b4fa",
+            "key": "  "
+        },
+        {
+            "type": "lm",
+            "keyColor": "#89b4fa",
+            "key": " 󰧨 "
+        },
+        {
+            "type": "wmtheme",
+            "keyColor": "#89b4fa",
+            "key": " 󰉼 "
+        },
+        {
+            "type": "cpu",
+            "keyColor": "#89b4fa",
+            "key": " 󰻠 "
+        },
+        {
+            "type": "gpu",
+            "keyColor": "#89b4fa",
+            "key": " 󰍛 "
+        },
+        {
+            "type": "disk",
+            "keyColor": "#89b4fa",
+            "key": "  "
+        },
+        {
+            "type": "memory",
+            "keyColor": "#89b4fa",
+            "key": " 󰑭 ",
+            "percent": {
+                "type": 3,     // Show both percentage number and bar
+                "green": 30,   // Values below 30% in green
+                "yellow": 70   // 30-70% in yellow, >70% in red
+            }
+        },
+        {
+            "type": "swap",
+            "keyColor": "#89b4fa",
+            "key": " 󰓡 "        
+        },
+        {
+            "type": "uptime",
+            "keyColor": "#89b4fa",
+            "key": " 󰅐 "        
+        },
+        {
+            "type": "display",
+            "keyColor": "#89b4fa",
+            "key": " 󰍹 "        
+        },
+        {
+          "type": "custom",
+          "format": ""
+        },
+        {
+          "type": "custom",
+          "key": "From",
+          "format": "ⓂⒶⓍⒾⓂⓄ ☻"
+        }
+    ]
+}

@@ -1,0 +1,149 @@
+* {
+    border: none;   
+    font-family: "Hack Nerd Font","Font Awesome","Fira Code", sans-serif;
+    font-size: 12px;
+}
+
+window#waybar {
+  margin-top: 0px;
+  background: #11111b;
+  color: #cdd6f4;
+}
+
+/* ----- WORKSPACES ----- */
+
+#workspaces {
+  padding: 2px 0px;
+  margin-bottom: 5px;
+  /*background-color: rgba(0,0,0,0.8);*/
+  border-right: none;
+}
+
+#workspaces button {
+  padding: 2px 0px;
+  background: transparent;
+  color: #cdd6f4;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 -3px transparent;
+  transition: all 0.25s ease;
+  border-right: 2px solid transparent;
+}
+
+#workspaces button:hover {
+  color: #ffffff;
+  text-shadow: none;
+  background: rgba(0,0,0,0.2);
+  border-radius: 0;
+}
+
+#workspaces button.active {
+  border-right: 2px solid #eff5ff;
+  padding: 2px 0px;
+}
+
+/* ----- Widgets ----- */
+  
+#custom-menu {
+  /* margin-right: 10px; */
+  color: #cdd6f4;
+}
+
+#custom-media {
+  border-radius: 12px;
+}
+
+#custom-steam {
+  font-size: 15px;
+}
+
+#custom-discord {
+  font-size: 13px;
+}
+
+#custom-reboot, #custom-browser {
+  font-size: 15px;
+}
+
+#clock, #image, #custom-reboot, #custom-poweroff, #custom-logout, #custom-hardware, #custom-terminal, #custom-browser, #custom-nvim, #custom-filemanager, #custom-discord, #custom-steam, #battery, #network, #tray, #pulseaudio, #temperature, #cpu, #memory, #custom-media,#custom-waybartheme,#custom-menu,#backlight {
+    padding: 5px 0px;
+    /*background-color: rgba(0,0,0,0.8);*/
+    transition: all 0.3s ease;
+    margin-top: 0px;
+}
+
+#cpu:hover, #custom-poweroff:hover, #custom-reboot:hover, #custom-logout:hover,#custom-hardware:hover, #memory:hover,#custom-terminal:hover,#custom-browser:hover,#custom-nvim:hover,#custom-filemanager:hover, #custom-discord:hover,#custom-steam:hover, #clock:hover, #battery:hover, #network:hover, #tray:hover, #pulseaudio:hover, #temperature:hover, #custom-media:hover,#custom-waybartheme:hover,#custom-menu:hover,#backlight:hover {
+  color: #ffffff;
+} 
+
+#cpu {
+  color: #f38ba8;
+  border-right: 2px solid #f38ba8;
+}
+
+#memory {
+  color:#a6e3a1;
+  border-right: 2px solid #a6e3a1;
+}
+
+#temperature {
+  color: #f9e2af;
+  border-right: 2px solid #f9e2af;
+}
+
+/* #battery.charging {
+    color: #98c379;
+}
+
+#battery.warning:not(.charging) {
+    color: #e5c07b;
+}
+
+#battery.critical:not(.charging) {
+    color: #e06c75;
+}*/
+
+#pulseaudio {
+  border-right: 2px solid #d5a2f7;
+  color: #d5a2f7;
+  padding: 5px 0px;
+  margin: 2px 0px;
+  font-size: 14px;
+}
+
+#tray {
+  border-right: 2px solid #cdd6f4;
+  color: #cdd6f4;
+  padding: 5px 0px;
+}
+
+#network {
+  border-right: 2px solid #70c05b;
+  color: #70c05b;
+  padding: 5px 0px;
+  margin: 2px 0px;
+  padding-right: 1px;
+  font-size: 13px;
+}
+
+#backlight {
+  border-right: 2px solid #5ea6f5;
+  color: #5ea6f5;
+  padding: 5px 0px;
+  margin: 2px 0px;
+}
+
+#battery {
+  border-right: 2px solid #363a4f;
+  color: #363a4f;
+  padding: 5px 0px;
+  margin: 2px 0px;
+}
+
+#clock {
+  border-right: 2px solid #f9e2af;
+  color: #f9e2af;
+  padding: 5px 0px;
+  margin: 2px 0px;
+}
+

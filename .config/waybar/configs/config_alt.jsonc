@@ -1,0 +1,236 @@
+{
+    "layer": "top",
+    "position": "left",
+    "width": 40,
+
+    // ---------- MODULOS
+
+    "modules-left": [
+      "group/arch",
+      "group/hardware",
+      "hyprland/workspaces",
+      "custom/terminal",
+      "custom/browser",
+      "custom/nvim",
+      "custom/filemanager",
+      "custom/discord",
+      "custom/steam"
+    ],
+    "modules-center": [],
+    "modules-right": [
+      "pulseaudio",
+      "network",
+      "tray",
+      //"custom/clima",
+      "clock",
+      "backlight",
+      "battery",
+      "custom/waybartheme",
+      "custom/menu"
+    ],
+
+    // MODULOS LEFT
+
+    "group/arch": {
+      "orientation": "vertical",
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "transition-left-to-right": true
+      },
+      "modules": [
+        "image",
+        "custom/poweroff",
+        "custom/reboot",
+        "custom/logout"
+      ]
+    },
+
+    // PRIMER GRUPO
+
+    "image": {
+        "path": "/home/Maximus/.config/waybar/img/arch.png",
+        "size": 30,
+        "tooltip": false,
+        "on-click": "rofi -show drun",
+        "format": ""
+    },
+    "custom/poweroff": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "shutdown now"
+      },
+    "custom/reboot": {
+      "format": "󰜉",
+      "tooltip": false,
+      "on-click": "reboot"
+    },
+    "custom/logout": {
+      "format": "󰗼",
+      "tooltip": false,
+      "on-click": "hyprctl dispatch exit"
+    },
+
+
+    // SEGUNDO GRUPO
+
+    "group/hardware": {
+      "orientation": "vertical",
+      "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "transition-left-to-right": true,
+        "click-to-reveal": true 	
+      },
+      "modules": [
+        "custom/hardware",
+        "cpu",
+        "memory",
+        "temperature"
+      ]
+    },
+
+    "custom/hardware": {
+      "format": "",
+      "cursor": "pointer",
+      "tooltip": false
+    },
+    "cpu": { 
+         "interval": 4,
+         "format": "{usage}%"
+    },
+    "memory": {
+         "interval": 4,
+         "format": "{used:0.1f}G",
+         "tooltip": false
+    },
+    "temperature": {
+         "tooltip": false,
+         "format": "{temperatureC}°C",
+         "critical-threshold": 80,
+         "format-critical": "<span color='#ff505b'></span> {temperatureC}°C"
+    },
+
+
+    "custom/terminal": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "alacritty -e bash -c 'fastfetch && bash'"
+    },
+    "custom/browser": {
+      "format": "󰈹",
+      "tooltip": false,
+      "on-click": "/home/Maximus/.local/zen/zen/zen"
+    },
+    "custom/nvim": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "alacritty -e bash -c 'nvim'"
+    },
+    "custom/filemanager":{
+      "format": "",
+      "tooltip": false,
+      "on-click": "nautilus"
+    },
+    "custom/discord": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "discord"
+    },
+    "custom/steam": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "steam"
+    },
+    // MODULO RIGHT
+
+    "pulseaudio": {
+        "scroll-step": 2, // %, can be a float
+        "format": "<span color='#ca9ee6'>{icon}</span>", //"{icon}  {volume}% {format_source}",
+        "format-bluetooth": "<span color='#ca9ee6'>{icon}</span>", //"{icon}  {volume}% {format_source}",
+        "format-bluetooth-muted": "<span color='#8839ef' size='12000'></span> {icon}",
+        "format-muted": "<span color='#b53F30'></span>",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "{volume}%",
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "<span color='#009940'></span>",
+        "format-ethernet": "<span color='#009940'></span>",
+	      "max-length": 3,
+        "interval": 3,
+        "tooltip-format": "{ipaddr}/{cidr} via {gwaddr}",
+        "format-linked": "<span color='#009940'></span>",
+        "format-disconnected": "Disconnected ⚠ {ifname}"
+    },
+    "backlight": {
+      "format": "<span color='#7287fd' size='10500'>󰃟</span>",
+      "on-scroll-up": "brightnessctl set +5%",
+      "on-scroll-down": "brightnessctl set -5%"
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 12
+        },
+	      "format": "{icon}",
+	      "format-icons": [
+		        "<span color='#E06C75' size='12000'>󰁺</span>",
+		        "<span color='#E06C75' size='12000'>󰁻</span>",
+		        "<span color='#E5C07B' size='12000'>󰁼</span>",
+	         	"<span color='#98C379' size='12000'>󰁽</span>",
+	        	"<span color='#98C379' size='12000'>󰁾</span>",
+        		"<span color='#98C379' size='12000'>󰁿</span>",
+        		"<span color='#98C379' size='12000'>󰂀</span>",
+        		"<span color='#98C379' size='12000'>󰂁</span>",
+        		"<span color='#98C379' size='12000'>󰂂</span>",
+	        	"<span color='#98C379' size='12000'>󰁹</span>"
+	      ],
+	      "max-length": 3
+    },
+    // "tray": {
+    //     "icon-size": 15,
+    //     "spacing": 10,
+    //    "icons": {
+    //       "blueman": "/home/Maximus/.config/waybar/img/bluetooth.png"
+    //    }
+    // },
+    "clock": {
+        "timezone": "America/Argentina/Buenos_Aires",
+        "tooltip": false,
+        "format": "<span color='#e0d080'></span>",
+        "format-alt": "<span color='#e0d080'></span>"
+    },
+    "custom/waybartheme": {
+      "format": " ",
+      "on-click": "~/.config/waybar/scripts/theme.sh",
+      "tooltip": false
+    },
+    "custom/menu": {
+        "format": " ",
+        "tooltip": false,
+        "on-click": "/home/Maximus/eww/target/release/eww update Userctl=true",
+        "on-click-right": "/home/Maximus/eww/target/release/eww update Userctl=false"
+    }
+
+    //"custom/clima":{
+        //"exec": "~/.config/waybar/scripts/tiempo.sh",
+        //"interval": 1800,
+        //"format": "{}"
+    //},
+    //"hyprland/window": {
+        //"tooltip": false,
+        //"max-length": 40
+    //},
+}

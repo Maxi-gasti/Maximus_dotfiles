@@ -1,0 +1,82 @@
+configuration {
+  display-drun: " ";
+  font: "Hack Nerd Font 10";
+  modi: "drun";
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #1a1a1add;
+  bg-alt: #dddddddd;
+
+  fg: #b0b0b0;
+  fg-alt: #1f1f1f;
+  fg-alt-2: #ffffff;
+
+  background-color: transparent;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  background-color: transparent;
+  location: northeast;
+  width: 200px;
+  x-offset: -10px;
+  y-offset: 10px;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+  border: 2px solid;
+  border-color: #d0d0d0;
+  border-radius: 5px;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+entry {
+  placeholder: "...";
+  padding: 20 0 0 5;
+  text-color: @fg-alt-2;
+}
+
+prompt {
+  enabled: true;
+  font: "Hack Nerd Font 12";
+  padding: 20 0 0 26;
+  text-color: @fg-alt-2;
+}
+
+listview {
+  columns: 1;
+  lines: 5;
+  padding: 12 0 12 0;
+}
+
+element {
+  padding: 12 12 12 0;
+  margin: 0 10 0 10;
+  text-color: @fg;
+}
+
+element selected {
+  text-color: @fg-alt;
+  background-color: @bg-alt;
+}
+
+element-text {
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 24;
+}

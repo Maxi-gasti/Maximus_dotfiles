@@ -1,0 +1,83 @@
+configuration {
+  display-drun: " ";
+  display-window: "Apps:";
+  drun-display-format: "{icon} {name}";
+  font: "Hack Nerd Font 10";
+  modi: "window,run,drun";
+  show-icons: true;
+  icon-theme: "Papirus";
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #11111bff;
+  bg-alt: #dddddddd;
+
+  fg: #b0b0b0;
+  fg-alt: #11111b;
+  fg-alt-2: #eceff4;
+
+  background-color: transparent;
+  transition: true;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  background-color: transparent;
+  location: northwest;
+  width: 300px;
+  x-offset: 10px;
+  y-offset: 10px;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+entry {
+  placeholder: "...";
+  padding: 20 0 0 5;
+  text-color: @fg-alt-2;
+}
+
+prompt {
+  enabled: true;
+  padding: 20 0 0 26;
+  text-color: @fg-alt-2;
+}
+
+listview {
+  columns: 1;
+  lines: 6;
+  padding: 12 0 12 0;
+}
+
+element {
+  padding: 12 12 12 20;
+  margin: 0 10 0 10;
+  text-color: @fg;
+}
+
+element selected {
+  text-color: @fg-alt;
+  background-color: @bg-alt;
+}
+
+element-text {
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 24;
+}

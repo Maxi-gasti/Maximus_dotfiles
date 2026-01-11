@@ -1,0 +1,20 @@
+
+window:
+  padding:
+    x: 10
+    y: 10
+  decorations: none
+  opacity: 0.4
+
+cursor:
+  style: Block
+  blinking: on
+
+colors:
+  primary:
+    background: '#1e1e2e'
+    foreground: '#cdd6f4'
+  cursor:
+    text: '#1e1e2e'
+    cursor: '#f5e0dc'
+
